@@ -8,10 +8,12 @@ from youtube_transcript_api import YouTubeTranscriptApi
 YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY")
 YOUTUBE_API_URL = "https://www.googleapis.com/youtube/v3/videos"
 
+
 def extract_video_id(url):
     # URL에서 v= 또는 /shorts/ 뒤의 ID 추출
     match = re.search(r"(?:v=|/shorts/)([a-zA-Z0-9_-]+)", url)
     return match.group(1) if match else None
+
 
 def get_video_info(video_id):
     """YouTube 동영상 제목, 채널 이름, 썸네일 URL, 조회수를 가져오는 함수"""
@@ -34,6 +36,7 @@ def get_video_info(video_id):
             }
             return video_info
     return None
+
 
 def get_video_captions(url):
     try:
@@ -74,6 +77,7 @@ def main():
     # 자막 가져오기
     captions = get_video_captions(video_id)
     print("Captions:", captions)
+
 
 # 프로그램의 시작점
 if __name__ == "__main__":
